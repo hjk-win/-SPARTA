@@ -10,7 +10,7 @@ import javax.sql.DataSource;
 /**
  * @ClassName DruidConfig
  * @Description DruidConfig
- * @Author F117
+ * @Author hjk
  * @Date 2021/12/31 21:59
  **/
 @Configuration
