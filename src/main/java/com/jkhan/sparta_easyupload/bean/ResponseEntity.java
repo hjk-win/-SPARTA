@@ -18,6 +18,11 @@ public class ResponseEntity<T> {
 
     }
 
+    public ResponseEntity(int code, String message) {
+        this.code = code;
+        this.message = message;
+    }
+
     public ResponseEntity(int code, String message, T body) {
         this.code = code;
         this.message = message;
