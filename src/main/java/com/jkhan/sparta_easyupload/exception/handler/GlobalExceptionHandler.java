@@ -1,8 +1,11 @@
 package com.jkhan.sparta_easyupload.exception.handler;
 
+import com.jkhan.sparta_easyupload.bean.ResponseEntity;
+import com.jkhan.sparta_easyupload.enumeration.CommonResponseEnum;
+import com.jkhan.sparta_easyupload.exception.BusinessException;
 import lombok.extern.slf4j.Slf4j;
-import org.springframework.web.bind.annotation.ControllerAdvice;
 import org.springframework.web.bind.annotation.ExceptionHandler;
+import org.springframework.web.bind.annotation.RestControllerAdvice;
 
 /**
  * @ClassName GlobalExceptionHandler
@@ -11,11 +14,17 @@ import org.springframework.web.bind.annotation.ExceptionHandler;
  * @Date 2022/1/1 21:22
  **/
 @Slf4j
-@ControllerAdvice
+@RestControllerAdvice
 public class GlobalExceptionHandler {
-    @ExceptionHandler(RuntimeException.class)
-    public String handleRuntimeException(RuntimeException e) {
+    @ExceptionHandler(BusinessException.class)
+    public Object handleBusinessException(BusinessException e) {
         log.error(e.getMessage());
-        return "Internal server error...";
+        return new ResponseEntity<>(CommonResponseEnum.FAILURE, e.getMessage());
+    }
+
+    @ExceptionHandler(RuntimeException.class)
+    public Object handleRuntimeException(RuntimeException e) {
+        log.error(e.getMessage());
+        return new ResponseEntity<>(500, "Internal server error...") ;
     }
 }

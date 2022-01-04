@@ -1,5 +1,6 @@
 package com.jkhan.sparta_easyupload.bean;
 
+import com.jkhan.sparta_easyupload.enumeration.CommonResponseEnum;
 import lombok.Data;
 
 /**
@@ -26,6 +27,17 @@ public class ResponseEntity<T> {
     public ResponseEntity(int code, String message, T body) {
         this.code = code;
         this.message = message;
+        this.body = body;
+    }
+
+    public ResponseEntity(CommonResponseEnum commonResponseEnum) {
+        this.code = commonResponseEnum.getCode();
+        this.message = commonResponseEnum.getMessage();
+    }
+
+    public ResponseEntity(CommonResponseEnum commonResponseEnum, T body) {
+        this.code = commonResponseEnum.getCode();
+        this.message = commonResponseEnum.getMessage();
         this.body = body;
     }
 
