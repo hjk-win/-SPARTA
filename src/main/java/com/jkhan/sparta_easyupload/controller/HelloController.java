@@ -16,6 +16,6 @@ public class HelloController {
     @GetMapping("/hello")
     public String hellWorld() {
         log.info("****** call hello api ******");
-        return "hello World";
+        return "hello world";
     }
 }
