@@ -1,6 +1,7 @@
 package com.jkhan.sparta_easyupload.service.impl;
 
 import com.jkhan.sparta_easyupload.bean.CollectorInfo;
+import com.jkhan.sparta_easyupload.constant.CommonConstant;
 import com.jkhan.sparta_easyupload.dao.CollectorDao;
 import com.jkhan.sparta_easyupload.exception.BusinessException;
 import com.jkhan.sparta_easyupload.service.CollectorService;
@@ -36,7 +37,7 @@ public class CollectorServiceImpl implements CollectorService {
     public CollectorInfo selectCollectorById(long collectorId) throws BusinessException {
         try {
             CollectorInfo collector = collectorDao.selectCollectorById(collectorId);
-            AssertUtil.notNull(collector, "找不到指定用户");
+            AssertUtil.notNull(collector, CommonConstant.NOT_EXIST);
             return collector;
         } catch (Exception e) {
             throw new BusinessException(e.getMessage());
@@ -54,7 +55,7 @@ public class CollectorServiceImpl implements CollectorService {
             if (isExist(collectorId)) {
                 return collectorDao.deleteCollectorById(collectorId);
             }
-            throw new BusinessException("该用户不存在");
+            throw new BusinessException(CommonConstant.NOT_EXIST);
         } catch (Exception e) {
             throw new BusinessException(e.getMessage());
         }
@@ -66,7 +67,7 @@ public class CollectorServiceImpl implements CollectorService {
             if (isExist(collectorInfo.getCollectorId())) {
                 return collectorDao.updateCollectorInfo(collectorInfo);
             }
-            throw new BusinessException("该用户不存在");
+            throw new BusinessException(CommonConstant.NOT_EXIST);
         } catch (Exception e) {
             throw new BusinessException(e.getMessage());
         }
