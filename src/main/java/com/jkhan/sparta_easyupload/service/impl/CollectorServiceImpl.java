@@ -24,9 +24,9 @@ public class CollectorServiceImpl implements CollectorService {
     private CollectorDao collectorDao;
 
     @Override
-    public int insertCollector(String collectorName, String collectorTelNumber, String collectorMail) throws BusinessException {
+    public int insertCollector(String collectorName, String collectorTelNumber, String collectorEmail) throws BusinessException {
         try {
-            return collectorDao.insertCollector(collectorName, collectorTelNumber, collectorMail);
+            return collectorDao.insertCollector(collectorName, collectorTelNumber, collectorEmail);
         } catch (Exception e) {
             throw new BusinessException(e.getMessage());
         }

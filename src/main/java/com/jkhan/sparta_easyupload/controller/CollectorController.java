@@ -22,14 +22,14 @@ public class CollectorController {
     @Autowired
     private CollectorService collectorService;
 
-    @GetMapping("/collector")
-    public ResponseEntity<CollectorInfo> getCollector(long collectorId) throws BusinessException {
+    @GetMapping("/collector/{collectorId}")
+    public ResponseEntity<CollectorInfo> getCollector(@PathVariable("collectorId") long collectorId) throws BusinessException {
         return new ResponseEntity<CollectorInfo>(CommonResponseEnum.SUCCESS, collectorService.selectCollectorById(collectorId));
     }
 
     @PostMapping("/collector")
-    public ResponseEntity<Integer> addCollector(String collectorName, String collectorTelNumber, String collectorMail) throws BusinessException {
-        return new ResponseEntity<Integer>(CommonResponseEnum.SUCCESS, collectorService.insertCollector(collectorName, collectorTelNumber, collectorMail));
+    public ResponseEntity<Integer> addCollector(String collectorName, String collectorTelNumber, String collectorEmail) throws BusinessException {
+        return new ResponseEntity<Integer>(CommonResponseEnum.SUCCESS, collectorService.insertCollector(collectorName, collectorTelNumber, collectorEmail));
     }
 
     @PutMapping("/collector")
@@ -37,8 +37,8 @@ public class CollectorController {
         return new ResponseEntity<Integer>(CommonResponseEnum.SUCCESS, collectorService.updateCollectorInfo(collectorInfo));
     }
 
-    @DeleteMapping("/collector")
-    public ResponseEntity<Integer> deleteCollector(long collectorId) throws BusinessException {
+    @DeleteMapping("/collector/{collectorId}")
+    public ResponseEntity<Integer> deleteCollector(@PathVariable("collectorId") long collectorId) throws BusinessException {
         return new ResponseEntity<Integer>(CommonResponseEnum.SUCCESS, collectorService.deleteCollectorById(collectorId));
     }
 

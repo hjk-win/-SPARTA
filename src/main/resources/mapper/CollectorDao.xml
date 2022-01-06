@@ -10,14 +10,14 @@
     </select>
     
     <insert id="insertCollector" parameterType="com.jkhan.sparta_easyupload.bean.CollectorInfo">
-        insert into collector_info(collector_name, collector_tel_number, collector_mail) values (#{collectorName}, #{collectorTelNumber}, #{collectorMail})
+        insert into collector_info(collector_name, collector_tel_number, collector_email) values (#{collectorName}, #{collectorTelNumber}, #{collectorEmail})
     </insert>
 
     <update id="updateCollectorInfo" parameterType="com.jkhan.sparta_easyupload.bean.CollectorInfo">
         update collector_info set 
         collector_name = #{collectorName},
         collector_tel_number = #{collectorTelNumber},
-        collector_mail = #{collectorMail}
+        collector_email = #{collectorEmail}
         where 
         collector_id = #{collectorId}
     </update>
@@ -27,9 +27,9 @@
     </delete>
 
     <insert id="insertCollectorList" parameterType="com.jkhan.sparta_easyupload.bean.CollectorInfo">
-        insert into collector_info(collector_name, collector_tel_number, collector_mail) values 
+        insert into collector_info(collector_name, collector_tel_number, collector_email) values
         <foreach collection="list" separator=",">
-            (#{collectorName}, #{collectorTelNumber}, #{collectorMail})
+            (#{collectorName}, #{collectorTelNumber}, #{collectorEmail})
         </foreach>
     </insert>
 </mapper>
