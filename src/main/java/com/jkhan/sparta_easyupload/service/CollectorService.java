@@ -6,7 +6,7 @@ import com.jkhan.sparta_easyupload.exception.BusinessException;
 import java.util.List;
 
 public interface CollectorService {
-    int insertCollector(String collectorName, String collectorTelNumber, String collectorEmail) throws BusinessException;
+    int insertCollector(CollectorInfo collector) throws BusinessException;
     CollectorInfo selectCollectorById(long collectorId) throws BusinessException;
     List<CollectorInfo> selectCollectors();
     int deleteCollectorById(long collectorId) throws BusinessException;

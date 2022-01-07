@@ -28,8 +28,8 @@ public class CollectorController {
     }
 
     @PostMapping("/collector")
-    public ResponseEntity<Integer> addCollector(String collectorName, String collectorTelNumber, String collectorEmail) throws BusinessException {
-        return new ResponseEntity<Integer>(CommonResponseEnum.SUCCESS, collectorService.insertCollector(collectorName, collectorTelNumber, collectorEmail));
+    public ResponseEntity<Integer> addCollector(CollectorInfo collector) throws BusinessException {
+        return new ResponseEntity<Integer>(CommonResponseEnum.SUCCESS, collectorService.insertCollector(collector));
     }
 
     @PutMapping("/collector")

@@ -7,7 +7,7 @@ import java.util.List;
 
 @Component
 public interface CollectorDao {
-    int insertCollector(String collectorName, String collectorTelNumber, String collectorMail);
+    int insertCollector(CollectorInfo collector);
     CollectorInfo selectCollectorById(long collectorId);
     List<CollectorInfo> selectCollectors();
     int deleteCollectorById(long collectorId);
