@@ -24,31 +24,31 @@ public class CollectorController {
 
     @PostMapping("/collector")
     public ResponseEntity<Integer> addCollector(CollectorInfo collector) throws BusinessException {
-        return new ResponseEntity<Integer>(CommonResponseEnum.SUCCESS, collectorService.insertCollector(collector));
+        return new ResponseEntity<>(CommonResponseEnum.SUCCESS, collectorService.insertCollector(collector));
     }
 
     @PostMapping("/collectors")
     public ResponseEntity<Integer> addCollectors(List<CollectorInfo> collectorInfoList) throws BusinessException {
-        return new ResponseEntity<Integer>(CommonResponseEnum.SUCCESS, collectorService.insertCollectorList(collectorInfoList));
+        return new ResponseEntity<>(CommonResponseEnum.SUCCESS, collectorService.insertCollectorList(collectorInfoList));
     }
 
     @DeleteMapping("/collector/{collectorId}")
     public ResponseEntity<Integer> deleteCollector(@PathVariable("collectorId") long collectorId) throws BusinessException {
-        return new ResponseEntity<Integer>(CommonResponseEnum.SUCCESS, collectorService.deleteCollectorById(collectorId));
+        return new ResponseEntity<>(CommonResponseEnum.SUCCESS, collectorService.deleteCollectorById(collectorId));
     }
 
     @PutMapping("/collector")
     public ResponseEntity<Integer> updateCollectorInfo(CollectorInfo collectorInfo) throws BusinessException {
-        return new ResponseEntity<Integer>(CommonResponseEnum.SUCCESS, collectorService.updateCollectorInfo(collectorInfo));
+        return new ResponseEntity<>(CommonResponseEnum.SUCCESS, collectorService.updateCollectorInfo(collectorInfo));
     }
 
     @GetMapping("/collector/{collectorId}")
     public ResponseEntity<CollectorInfo> getCollector(@PathVariable("collectorId") long collectorId) throws BusinessException {
-        return new ResponseEntity<CollectorInfo>(CommonResponseEnum.SUCCESS, collectorService.selectCollectorById(collectorId));
+        return new ResponseEntity<>(CommonResponseEnum.SUCCESS, collectorService.selectCollectorById(collectorId));
     }
 
     @GetMapping("collectors")
-    public ResponseEntity<List<CollectorInfo>> selectAllCollector() {
-        return new ResponseEntity<List<CollectorInfo>>(CommonResponseEnum.SUCCESS, collectorService.selectCollectors());
+    public ResponseEntity<List<CollectorInfo>> getCollectors() {
+        return new ResponseEntity<>(CommonResponseEnum.SUCCESS, collectorService.selectCollectors());
     }
 }

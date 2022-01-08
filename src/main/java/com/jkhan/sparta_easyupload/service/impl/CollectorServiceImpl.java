@@ -45,18 +45,6 @@ public class CollectorServiceImpl implements CollectorService {
     }
 
     @Override
-    public CollectorInfo selectCollectorById(long collectorId) throws BusinessException {
-        log.info(CommonConstant.SELECT_FORM_DB, "collector: " + collectorId);
-        try {
-            CollectorInfo collector = collectorDao.selectCollectorById(collectorId);
-            AssertUtil.notNull(collector, CommonConstant.NOT_EXIST);
-            return collector;
-        } catch (Exception e) {
-            throw new BusinessException(e.getMessage());
-        }
-    }
-
-    @Override
     public int deleteCollectorById(long collectorId) throws BusinessException {
         log.info(CommonConstant.DELETE_FROM_DB, "collector: " + collectorId);
         try {
@@ -71,12 +59,24 @@ public class CollectorServiceImpl implements CollectorService {
 
     @Override
     public int updateCollectorInfo(CollectorInfo collectorInfo) throws BusinessException {
-        log.info(CommonConstant.UPDATE_FROM_DB, collectorInfo);
+        log.info(CommonConstant.UPDATE_FROM_DB, collectorInfo.toString());
         try {
             if (isExist(collectorInfo.getCollectorId())) {
                 return collectorDao.updateCollectorInfo(collectorInfo);
             }
             throw new BusinessException(CommonConstant.NOT_EXIST);
+        } catch (Exception e) {
+            throw new BusinessException(e.getMessage());
+        }
+    }
+
+    @Override
+    public CollectorInfo selectCollectorById(long collectorId) throws BusinessException {
+        log.info(CommonConstant.SELECT_FORM_DB, "collector: " + collectorId);
+        try {
+            CollectorInfo collector = collectorDao.selectCollectorById(collectorId);
+            AssertUtil.notNull(collector, CommonConstant.NOT_EXIST);
+            return collector;
         } catch (Exception e) {
             throw new BusinessException(e.getMessage());
         }

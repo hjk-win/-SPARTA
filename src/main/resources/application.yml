@@ -28,3 +28,7 @@ mybatis:
 
 swagger:
   enabled: true
+
+logging:
+  level:
+    com.jkhan.sparta_easyupload.dao: debug
