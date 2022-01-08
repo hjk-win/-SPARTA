@@ -48,6 +48,7 @@ public class CollectorServiceImpl implements CollectorService {
 
     @Override
     public List<CollectorInfo> selectCollectors() {
+        log.info(CommonConstant.SELECT_FORM_DB, "collectors");
         return collectorDao.selectCollectors();
     }
 
@@ -78,10 +79,10 @@ public class CollectorServiceImpl implements CollectorService {
     }
 
     @Override
-    public int insertCollectorList(List<CollectorInfo> collectorInfo) throws BusinessException {
-        log.info(CommonConstant.INSERT_INTO_DB, collectorInfo.toString());
+    public int insertCollectorList(List<CollectorInfo> collectorInfoList) throws BusinessException {
+        log.info(CommonConstant.INSERT_INTO_DB, collectorInfoList.toString());
         try {
-            return collectorDao.insertCollectorList(collectorInfo);
+            return collectorDao.insertCollectorList(collectorInfoList);
         } catch (Exception e) {
             throw new BusinessException(e.getMessage());
         }
