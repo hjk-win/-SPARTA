@@ -26,6 +26,7 @@ public class CollectorServiceImpl implements CollectorService {
 
     @Override
     public int insertCollector(CollectorInfo collector) throws BusinessException {
+        log.info(CommonConstant.INSERT_INTO_DB, collector.toString());
         try {
             return collectorDao.insertCollector(collector);
         } catch (Exception e) {
@@ -35,6 +36,7 @@ public class CollectorServiceImpl implements CollectorService {
 
     @Override
     public CollectorInfo selectCollectorById(long collectorId) throws BusinessException {
+        log.info(CommonConstant.SELECT_FORM_DB, "collector: " + collectorId);
         try {
             CollectorInfo collector = collectorDao.selectCollectorById(collectorId);
             AssertUtil.notNull(collector, CommonConstant.NOT_EXIST);
@@ -51,6 +53,7 @@ public class CollectorServiceImpl implements CollectorService {
 
     @Override
     public int deleteCollectorById(long collectorId) throws BusinessException {
+        log.info(CommonConstant.DELETE_FROM_DB, "collector: " + collectorId);
         try {
             if (isExist(collectorId)) {
                 return collectorDao.deleteCollectorById(collectorId);
@@ -63,6 +66,7 @@ public class CollectorServiceImpl implements CollectorService {
 
     @Override
     public int updateCollectorInfo(CollectorInfo collectorInfo) throws BusinessException {
+        log.info(CommonConstant.UPDATE_FROM_DB, collectorInfo);
         try {
             if (isExist(collectorInfo.getCollectorId())) {
                 return collectorDao.updateCollectorInfo(collectorInfo);
@@ -74,9 +78,10 @@ public class CollectorServiceImpl implements CollectorService {
     }
 
     @Override
-    public int insertCollectorList(List<CollectorInfo> collectorInfoList) throws BusinessException {
+    public int insertCollectorList(List<CollectorInfo> collectorInfo) throws BusinessException {
+        log.info(CommonConstant.INSERT_INTO_DB, collectorInfo.toString());
         try {
-            return collectorDao.insertCollectorList(collectorInfoList);
+            return collectorDao.insertCollectorList(collectorInfo);
         } catch (Exception e) {
             throw new BusinessException(e.getMessage());
         }

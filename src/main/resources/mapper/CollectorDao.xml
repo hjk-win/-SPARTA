@@ -26,10 +26,10 @@
         delete from collector_info where collector_id = #{collectorId}
     </delete>
 
-    <insert id="insertCollectorList" useGeneratedKeys="true" keyProperty="collectorId" parameterType="com.jkhan.sparta_easyupload.bean.CollectorInfo">
+    <insert id="insertCollectorList" useGeneratedKeys="true" keyProperty="collectorId" parameterType="java.util.List">
         insert into collector_info(collector_name, collector_tel_number, collector_email) values
-        <foreach collection="list" separator=",">
-            (#{collectorName}, #{collectorTelNumber}, #{collectorEmail})
+        <foreach collection="list" item="collector" separator=",">
+            (#{collector.collectorName, jdbcType=VARCHAR}, #{collector.collectorTelNumber, jdbcType=VARCHAR}, #{collector.collectorEmail, jdbcType=VARCHAR})
         </foreach>
     </insert>
 </mapper>

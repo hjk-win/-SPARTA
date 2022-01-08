@@ -1,5 +1,6 @@
 package com.jkhan.sparta_easyupload.bean;
 
+import lombok.AllArgsConstructor;
 import lombok.Data;
 
 /**
@@ -9,6 +10,7 @@ import lombok.Data;
  * @Date 2021/12/31 10:49
  **/
 @Data
+@AllArgsConstructor
 public class CollectorInfo {
     private long collectorId;
     private String collectorName;
