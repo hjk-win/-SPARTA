@@ -35,6 +35,16 @@ public class CollectorServiceImpl implements CollectorService {
     }
 
     @Override
+    public int insertCollectorList(List<CollectorInfo> collectorInfoList) throws BusinessException {
+        log.info(CommonConstant.INSERT_INTO_DB, collectorInfoList.toString());
+        try {
+            return collectorDao.insertCollectorList(collectorInfoList);
+        } catch (Exception e) {
+            throw new BusinessException(e.getMessage());
+        }
+    }
+
+    @Override
     public CollectorInfo selectCollectorById(long collectorId) throws BusinessException {
         log.info(CommonConstant.SELECT_FORM_DB, "collector: " + collectorId);
         try {
@@ -44,12 +54,6 @@ public class CollectorServiceImpl implements CollectorService {
         } catch (Exception e) {
             throw new BusinessException(e.getMessage());
         }
-    }
-
-    @Override
-    public List<CollectorInfo> selectCollectors() {
-        log.info(CommonConstant.SELECT_FORM_DB, "collectors");
-        return collectorDao.selectCollectors();
     }
 
     @Override
@@ -79,13 +83,9 @@ public class CollectorServiceImpl implements CollectorService {
     }
 
     @Override
-    public int insertCollectorList(List<CollectorInfo> collectorInfoList) throws BusinessException {
-        log.info(CommonConstant.INSERT_INTO_DB, collectorInfoList.toString());
-        try {
-            return collectorDao.insertCollectorList(collectorInfoList);
-        } catch (Exception e) {
-            throw new BusinessException(e.getMessage());
-        }
+    public List<CollectorInfo> selectCollectors() {
+        log.info(CommonConstant.SELECT_FORM_DB, "collectors");
+        return collectorDao.selectCollectors();
     }
 
     private boolean isExist(long id) {

@@ -1,17 +1,20 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
 <mapper namespace="com.jkhan.sparta_easyupload.dao.CollectorDao">
-    <select id="selectCollectorById" resultType="com.jkhan.sparta_easyupload.bean.CollectorInfo">
-        select * from collector_info where collector_id = #{collectorId}
-    </select>
-
-    <select id="selectCollectors" resultType="com.jkhan.sparta_easyupload.bean.CollectorInfo">
-        select * from collector_info
-    </select>
-    
     <insert id="insertCollector" useGeneratedKeys="true" keyProperty="collectorId" parameterType="com.jkhan.sparta_easyupload.bean.CollectorInfo">
         insert into collector_info(collector_name, collector_tel_number, collector_email) values (#{collectorName}, #{collectorTelNumber}, #{collectorEmail})
     </insert>
+
+    <insert id="insertCollectorList" useGeneratedKeys="true" keyProperty="collectorId" parameterType="java.util.List">
+        insert into collector_info(collector_name, collector_tel_number, collector_email) values
+        <foreach collection="list" item="collector" separator=",">
+            (#{collector.collectorName, jdbcType=VARCHAR}, #{collector.collectorTelNumber, jdbcType=VARCHAR}, #{collector.collectorEmail, jdbcType=VARCHAR})
+        </foreach>
+    </insert>
+
+    <delete id="deleteCollectorById" parameterType="com.jkhan.sparta_easyupload.bean.CollectorInfo">
+        delete from collector_info where collector_id = #{collectorId}
+    </delete>
 
     <update id="updateCollectorInfo" parameterType="com.jkhan.sparta_easyupload.bean.CollectorInfo">
         update collector_info set 
@@ -21,15 +24,12 @@
         where 
         collector_id = #{collectorId}
     </update>
-    
-    <delete id="deleteCollectorById" parameterType="com.jkhan.sparta_easyupload.bean.CollectorInfo">
-        delete from collector_info where collector_id = #{collectorId}
-    </delete>
 
-    <insert id="insertCollectorList" useGeneratedKeys="true" keyProperty="collectorId" parameterType="java.util.List">
-        insert into collector_info(collector_name, collector_tel_number, collector_email) values
-        <foreach collection="list" item="collector" separator=",">
-            (#{collector.collectorName, jdbcType=VARCHAR}, #{collector.collectorTelNumber, jdbcType=VARCHAR}, #{collector.collectorEmail, jdbcType=VARCHAR})
-        </foreach>
-    </insert>
+    <select id="selectCollectorById" resultType="com.jkhan.sparta_easyupload.bean.CollectorInfo">
+        select * from collector_info where collector_id = #{collectorId}
+    </select>
+
+    <select id="selectCollectors" resultType="com.jkhan.sparta_easyupload.bean.CollectorInfo">
+        select * from collector_info
+    </select>
 </mapper>

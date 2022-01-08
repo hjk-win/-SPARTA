@@ -22,19 +22,14 @@ public class CollectorController {
     @Autowired
     private CollectorService collectorService;
 
-    @GetMapping("/collector/{collectorId}")
-    public ResponseEntity<CollectorInfo> getCollector(@PathVariable("collectorId") long collectorId) throws BusinessException {
-        return new ResponseEntity<CollectorInfo>(CommonResponseEnum.SUCCESS, collectorService.selectCollectorById(collectorId));
-    }
-
     @PostMapping("/collector")
     public ResponseEntity<Integer> addCollector(CollectorInfo collector) throws BusinessException {
         return new ResponseEntity<Integer>(CommonResponseEnum.SUCCESS, collectorService.insertCollector(collector));
     }
 
-    @PutMapping("/collector")
-    public ResponseEntity<Integer> updateCollectorInfo(CollectorInfo collectorInfo) throws BusinessException {
-        return new ResponseEntity<Integer>(CommonResponseEnum.SUCCESS, collectorService.updateCollectorInfo(collectorInfo));
+    @PostMapping("/collectors")
+    public ResponseEntity<Integer> addCollectors(List<CollectorInfo> collectorInfoList) throws BusinessException {
+        return new ResponseEntity<Integer>(CommonResponseEnum.SUCCESS, collectorService.insertCollectorList(collectorInfoList));
     }
 
     @DeleteMapping("/collector/{collectorId}")
@@ -42,9 +37,14 @@ public class CollectorController {
         return new ResponseEntity<Integer>(CommonResponseEnum.SUCCESS, collectorService.deleteCollectorById(collectorId));
     }
 
-    @PostMapping("/collectors")
-    public ResponseEntity<Integer> addCollectors(List<CollectorInfo> collectorInfoList) throws BusinessException {
-        return new ResponseEntity<Integer>(CommonResponseEnum.SUCCESS, collectorService.insertCollectorList(collectorInfoList));
+    @PutMapping("/collector")
+    public ResponseEntity<Integer> updateCollectorInfo(CollectorInfo collectorInfo) throws BusinessException {
+        return new ResponseEntity<Integer>(CommonResponseEnum.SUCCESS, collectorService.updateCollectorInfo(collectorInfo));
+    }
+
+    @GetMapping("/collector/{collectorId}")
+    public ResponseEntity<CollectorInfo> getCollector(@PathVariable("collectorId") long collectorId) throws BusinessException {
+        return new ResponseEntity<CollectorInfo>(CommonResponseEnum.SUCCESS, collectorService.selectCollectorById(collectorId));
     }
 
     @GetMapping("collectors")
