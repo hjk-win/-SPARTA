@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
-<mapper namespace="com.jkhan.sparta_easyupload.dao.AdminDao">
+<mapper namespace="com.jkhan.sparta_easy_upload.dao.AdminDao">
 
-    <select id="checkIdentity" resultType="com.jkhan.sparta_easyupload.bean.AdminInfo">
+    <select id="checkIdentity" resultType="com.jkhan.sparta_easy_upload.bean.AdminInfo">
         select * from admin_info where admin_tel_number = #{adminTelNumber} and password = #{password}
     </select>
 
