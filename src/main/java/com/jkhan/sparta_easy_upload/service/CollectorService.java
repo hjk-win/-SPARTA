@@ -8,8 +8,8 @@ import java.util.List;
 public interface CollectorService {
     int insertCollector(CollectorInfo collector) throws BusinessException;
     int insertCollectorList(List<CollectorInfo> collectorInfoList) throws BusinessException;
-    int deleteCollectorById(long collectorId) throws BusinessException;
+    int deleteCollectorById(Integer collectorId) throws BusinessException;
     int updateCollectorInfo(CollectorInfo collectorInfo) throws BusinessException;
-    CollectorInfo selectCollectorById(long collectorId) throws BusinessException;
+    CollectorInfo selectCollectorById(Integer collectorId) throws BusinessException;
     List<CollectorInfo> selectCollectors();
 }

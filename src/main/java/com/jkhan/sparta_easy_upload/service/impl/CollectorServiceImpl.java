@@ -45,7 +45,7 @@ public class CollectorServiceImpl implements CollectorService {
     }
 
     @Override
-    public int deleteCollectorById(long collectorId) throws BusinessException {
+    public int deleteCollectorById(Integer collectorId) throws BusinessException {
         log.info(CommonConstant.DELETE_FROM_DB, "collector: " + collectorId);
         try {
             if (isExist(collectorId)) {
@@ -71,7 +71,7 @@ public class CollectorServiceImpl implements CollectorService {
     }
 
     @Override
-    public CollectorInfo selectCollectorById(long collectorId) throws BusinessException {
+    public CollectorInfo selectCollectorById(Integer collectorId) throws BusinessException {
         log.info(CommonConstant.SELECT_FORM_DB, "collector: " + collectorId);
         try {
             CollectorInfo collector = collectorDao.selectCollectorById(collectorId);
@@ -88,7 +88,7 @@ public class CollectorServiceImpl implements CollectorService {
         return collectorDao.selectCollectors();
     }
 
-    private boolean isExist(long id) {
+    private boolean isExist(Integer id) {
         List<CollectorInfo> collectors = selectCollectors();
         for (CollectorInfo collector : collectors) {
             if (id == collector.getCollectorId()) {

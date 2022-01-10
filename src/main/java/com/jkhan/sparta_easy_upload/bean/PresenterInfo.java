@@ -10,10 +10,10 @@ import lombok.Data;
  **/
 @Data
 public class PresenterInfo {
-    private long presenterId;
+    private Integer presenterId;
     private String presenterName;
     private String presenterTelNumber;
     private String presenterEmail;
     private String presenterWechat;
-    private long collectorId;
+    private Integer collectorId;
 }

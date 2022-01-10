@@ -16,7 +16,7 @@ import java.util.List;
 @AllArgsConstructor
 @NoArgsConstructor
 public class CollectorInfo {
-    private long collectorId;
+    private Integer collectorId;
     private String collectorName;
     private String collectorTelNumber;
     private String collectorEmail;

@@ -33,7 +33,7 @@ public class CollectorController {
     }
 
     @DeleteMapping("/collector/{collectorId}")
-    public ResponseEntity<Integer> deleteCollector(@PathVariable("collectorId") long collectorId) throws BusinessException {
+    public ResponseEntity<Integer> deleteCollector(@PathVariable("collectorId") Integer collectorId) throws BusinessException {
         return new ResponseEntity<>(CommonResponseEnum.SUCCESS, collectorService.deleteCollectorById(collectorId));
     }
 
@@ -43,7 +43,7 @@ public class CollectorController {
     }
 
     @GetMapping("/collector/{collectorId}")
-    public ResponseEntity<CollectorInfo> getCollector(@PathVariable("collectorId") long collectorId) throws BusinessException {
+    public ResponseEntity<CollectorInfo> getCollector(@PathVariable("collectorId") Integer collectorId) throws BusinessException {
         return new ResponseEntity<>(CommonResponseEnum.SUCCESS, collectorService.selectCollectorById(collectorId));
     }
 

@@ -9,8 +9,8 @@ import java.util.List;
 public interface CollectorDao {
     int insertCollector(CollectorInfo collector);
     int insertCollectorList(List<CollectorInfo> collectorInfoList);
-    int deleteCollectorById(long collectorId);
+    int deleteCollectorById(Integer collectorId);
     int updateCollectorInfo(CollectorInfo collectorInfo);
-    CollectorInfo selectCollectorById(long collectorId);
+    CollectorInfo selectCollectorById(Integer collectorId);
     List<CollectorInfo> selectCollectors();
 }
