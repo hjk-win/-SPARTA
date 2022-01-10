@@ -32,7 +32,7 @@ public class SwaggerConfig {
         return new Docket(DocumentationType.SWAGGER_2)
                 .apiInfo(apiInfo())
                 .select()
-                .apis(RequestHandlerSelectors.basePackage("com.jkhan.sparta_easyupload.controller"))
+                .apis(RequestHandlerSelectors.basePackage("com.jkhan.sparta_easy_upload.controller"))
                 .paths(PathSelectors.any())
                 .build();
     }

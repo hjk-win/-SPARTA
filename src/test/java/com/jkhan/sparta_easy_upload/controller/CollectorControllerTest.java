@@ -1,8 +1,8 @@
-package com.jkhan.sparta_easyupload.controller;
+package com.jkhan.sparta_easy_upload.controller;
 
-import com.jkhan.sparta_easyupload.bean.CollectorInfo;
-import com.jkhan.sparta_easyupload.exception.BusinessException;
-import com.jkhan.sparta_easyupload.service.CollectorService;
+import com.jkhan.sparta_easy_upload.bean.CollectorInfo;
+import com.jkhan.sparta_easy_upload.exception.BusinessException;
+import com.jkhan.sparta_easy_upload.service.CollectorService;
 import lombok.extern.slf4j.Slf4j;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -27,7 +27,7 @@ public class CollectorControllerTest {
     void testAddCollectors() {
         List<CollectorInfo> collectors = new ArrayList<>();
         for (int i = 1; i < 10; i++) {
-            CollectorInfo collector = new CollectorInfo(i, "hhh", "test", "test");
+            CollectorInfo collector = new CollectorInfo(i, "hhh", "test", "test", null);
             collectors.add(collector);
         }
         try {

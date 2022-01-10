@@ -1,7 +1,21 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
-<mapper namespace="com.jkhan.sparta_easyupload.dao.CollectorDao">
-    <insert id="insertCollector" useGeneratedKeys="true" keyProperty="collectorId" parameterType="com.jkhan.sparta_easyupload.bean.CollectorInfo">
+<mapper namespace="com.jkhan.sparta_easy_upload.dao.CollectorDao">
+    <resultMap id="collectorId" type="com.jkhan.sparta_easy_upload.bean.CollectorInfo">
+        <id property="collectorId" column="collector_id"/>
+        <result property="collectorName" column="collector_name"/>
+        <result property="collectorTelNumber" column="collector_tel_number"/>
+        <result property="collectorEmail" column="collector_email"/>
+        <collection property="presenters" ofType="com.jkhan.sparta_easy_upload.bean.PresenterInfo">
+            <id property="presenterId" column="presenter_id"/>
+            <result property="presenterName" column="presenter_name"/>
+            <result property="presenterTelNumber" column="presenter_tel_number"/>
+            <result property="presenterEmail" column="presenter_email"/>
+            <result property="presenterWechat" column="presenter_wechat"/>
+        </collection>
+    </resultMap>
+
+    <insert id="insertCollector" useGeneratedKeys="true" keyProperty="collectorId" parameterType="CollectorInfo">
         insert into collector_info(collector_name, collector_tel_number, collector_email) values (#{collectorName}, #{collectorTelNumber}, #{collectorEmail})
     </insert>
 
@@ -12,11 +26,11 @@
         </foreach>
     </insert>
 
-    <delete id="deleteCollectorById" parameterType="com.jkhan.sparta_easyupload.bean.CollectorInfo">
+    <delete id="deleteCollectorById" parameterType="CollectorInfo">
         delete from collector_info where collector_id = #{collectorId}
     </delete>
 
-    <update id="updateCollectorInfo" parameterType="com.jkhan.sparta_easyupload.bean.CollectorInfo">
+    <update id="updateCollectorInfo" parameterType="CollectorInfo">
         update collector_info set 
         collector_name = #{collectorName},
         collector_tel_number = #{collectorTelNumber},
@@ -25,11 +39,11 @@
         collector_id = #{collectorId}
     </update>
 
-    <select id="selectCollectorById" resultType="com.jkhan.sparta_easyupload.bean.CollectorInfo">
+    <select id="selectCollectorById" resultType="CollectorInfo">
         select * from collector_info where collector_id = #{collectorId}
     </select>
 
-    <select id="selectCollectors" resultType="com.jkhan.sparta_easyupload.bean.CollectorInfo">
+    <select id="selectCollectors" resultType="CollectorInfo">
         select * from collector_info
     </select>
 </mapper>

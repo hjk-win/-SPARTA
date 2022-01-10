@@ -1,7 +1,10 @@
-package com.jkhan.sparta_easyupload.bean;
+package com.jkhan.sparta_easy_upload.bean;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;
+import lombok.NoArgsConstructor;
+
+import java.util.List;
 
 /**
  * @ClassName CollectorInfo
@@ -11,9 +14,11 @@ import lombok.Data;
  **/
 @Data
 @AllArgsConstructor
+@NoArgsConstructor
 public class CollectorInfo {
     private long collectorId;
     private String collectorName;
     private String collectorTelNumber;
     private String collectorEmail;
+    private List<PresenterInfo> presenters;
 }
