@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.jkhan.sparta_easy_upload.dao.PresenterDao">
+
+    <insert id="insertPresenter" useGeneratedKeys="true" keyProperty="presenterId" parameterType="PresenterInfo">
+        insert into presenter_info
+        (presenter_name, presenter_tel_number, presenter_email, presenter_wechat, collector_id)
+        values
+        (#{presenterName}, #{presenterTelNumber}, #{presenterEmail}, #{presenterWechat}, #{collectorId})
+    </insert>
+
+    <insert id="insertPresenterList" useGeneratedKeys="true" keyProperty="presenterId" parameterType="java.util.List">
+        insert into presenter_info (presenter_name, presenter_tel_number, presenter_email, presenter_wechat, collector_id) values
+        <foreach collection="list" item="presenter" separator=",">
+            (#{presenter.presenterName, jdbcType=VARCHAR},
+            #{presenter.presenterTelNumber, jdbcType=VARCHAR},
+            #{presenter.presenterEmail, jdbcType=VARCHAR},
+            #{presenter.presenterWechat, jdbcType=VARCHAR},
+            #{presenter.collectorId, jdbcType=int})
+        </foreach>
+    </insert>
+
+    <delete id="deletePresenterById" parameterType="PresenterInfo">
+        delete from presenter_info where presenter_id = #{presenterId}
+    </delete>
+
+    <update id="updatePresenterInfo" parameterType="PresenterInfo">
+        update presenter_info set
+        presenter_name = #{presenterName},
+        presenter_tel_number = #{presenterTelNumber},
+        presenter_email = #{presenterEmail},
+        presenter_wechat = #{presenterWechat},
+        collector_id = #{collectorId}
+        where
+        presenter_id = #{presenterId}
+    </update>
+
+    <select id="selectPresenterById" resultType="PresenterInfo">
+        select * from presenter_info where presenter_id = #{presenterId}
+    </select>
+
+    <select id="selectPresenters" resultType="PresenterInfo">
+        select * from presenter_info
+    </select>
+</mapper>
