@@ -21,4 +21,5 @@ public class CollectorInfo {
     private String collectorTelNumber;
     private String collectorEmail;
     private List<PresenterInfo> presenters;
+    private List<TaskInfo> tasks;
 }

@@ -27,7 +27,7 @@ public class CollectorControllerTest {
     void testAddCollectors() {
         List<CollectorInfo> collectors = new ArrayList<>();
         for (int i = 1; i < 10; i++) {
-            CollectorInfo collector = new CollectorInfo(i, "hhh", "test", "test", null);
+            CollectorInfo collector = new CollectorInfo(i, "hhh", "test", "test", null, null);
             collectors.add(collector);
         }
         try {

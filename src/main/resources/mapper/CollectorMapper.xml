@@ -1,17 +1,26 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
 <mapper namespace="com.jkhan.sparta_easy_upload.dao.CollectorDao">
-    <resultMap id="collectorId" type="com.jkhan.sparta_easy_upload.bean.CollectorInfo">
+    <resultMap id="collectorId" type="CollectorInfo">
         <id property="collectorId" column="collector_id"/>
         <result property="collectorName" column="collector_name"/>
         <result property="collectorTelNumber" column="collector_tel_number"/>
         <result property="collectorEmail" column="collector_email"/>
-        <collection property="presenters" ofType="com.jkhan.sparta_easy_upload.bean.PresenterInfo">
+        <collection property="presenters" ofType="PresenterInfo">
             <id property="presenterId" column="presenter_id"/>
             <result property="presenterName" column="presenter_name"/>
             <result property="presenterTelNumber" column="presenter_tel_number"/>
             <result property="presenterEmail" column="presenter_email"/>
             <result property="presenterWechat" column="presenter_wechat"/>
+        </collection>
+        <collection property="tasks" ofType="TaskInfo">
+            <id property="taskId" column="task_id"/>
+            <result property="taskName" column="task_name"/>
+            <result property="taskDescribe" column="task_describe"/>
+            <result property="taskStatus" column="taskStatus"/>
+            <result property="startTime" column="startTime"/>
+            <result property="endTime" column="endTime"/>
+            <result property="collector_id" column="collectorId"/>
         </collection>
     </resultMap>
 
