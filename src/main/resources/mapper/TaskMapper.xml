@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.jkhan.sparta_easy_upload.dao.TaskDao">
+
+    <insert id="insertPresenter" useGeneratedKeys="true" keyProperty="taskId" parameterType="TaskInfo">
+        insert into task_info
+        (task_id, task_name, task_describe, task_status, start_time, end_time, collector_id)
+        values
+        (#{taskId}, #{taskName}, #{taskDescribe}, #{taskStatus}, #{startTime}, #{endTime}, #{collectorId})
+    </insert>
+
+    <delete id="deleteTaskById" parameterType="TaskInfo">
+        delete from task_info where task_id = #{taskId}
+    </delete>
+
+    <update id="updateTaskInfo" parameterType="TaskInfo">
+        update task_info set
+        task_name = #{taskName},
+        task_describe = #{taskDescribe},
+        task_status = #{taskStatus},
+        start_time = #{startTime},
+        end_time = #{endTime},
+        collector_id = #{collectorId}
+        where
+        task_id = #{taskId}
+    </update>
+
+    <select id="selectTaskById" resultType="TaskInfo">
+        select * from task_info where task_id = #{taskId}
+    </select>
+
+    <select id="selectPublishedTasks" resultType="TaskInfo">
+        select * from task_info where collector_id = #{collectorId}
+    </select>
+
+    <select id="selectTasks" resultType="TaskInfo">
+        select * from task_info
+    </select>
+</mapper>

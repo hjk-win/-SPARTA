@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
 <mapper namespace="com.jkhan.sparta_easy_upload.dao.CollectorDao">
-    <resultMap id="collectorId" type="CollectorInfo">
+    <resultMap id="collectorMap" type="CollectorInfo">
         <id property="collectorId" column="collector_id"/>
         <result property="collectorName" column="collector_name"/>
         <result property="collectorTelNumber" column="collector_tel_number"/>
