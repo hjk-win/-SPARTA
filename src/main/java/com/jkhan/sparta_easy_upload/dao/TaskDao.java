@@ -13,4 +13,5 @@ public interface TaskDao {
     TaskInfo selectTaskById(Integer taskId);
     List<TaskInfo> selectPublishedTasks(Integer collectorId);
     List<TaskInfo> selectTasks();
+    List<TaskInfo> selectSpecifyPresenters(Integer taskId);
 }

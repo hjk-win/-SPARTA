@@ -27,8 +27,8 @@ public class TaskController {
         return new ResponseEntity<>(CommonResponseEnum.SUCCESS, taskService.insertTask(task));
     }
 
-    @DeleteMapping("/task")
-    public ResponseEntity<Integer> deleteTask(Integer taskId) throws BusinessException {
+    @DeleteMapping("/task/{taskId}")
+    public ResponseEntity<Integer> deleteTask(@PathVariable("taskId") Integer taskId) throws BusinessException {
         return new ResponseEntity<>(CommonResponseEnum.SUCCESS, taskService.deleteTaskById(taskId));
     }
 
@@ -37,18 +37,23 @@ public class TaskController {
         return new ResponseEntity<>(CommonResponseEnum.SUCCESS, taskService.updateTaskInfo(taskInfo));
     }
 
-    @GetMapping("/task")
-    public ResponseEntity<TaskInfo> getTask(Integer taskId) throws BusinessException {
+    @GetMapping("/task/{taskId}")
+    public ResponseEntity<TaskInfo> getTask(@PathVariable("taskId") Integer taskId) throws BusinessException {
         return new ResponseEntity<>(CommonResponseEnum.SUCCESS, taskService.selectTaskById(taskId));
     }
 
-    @GetMapping("/published-tasks")
-    public ResponseEntity<List<TaskInfo>> getPublishedTasks(Integer collectorId) {
+    @GetMapping("/published-tasks/{collectorId}")
+    public ResponseEntity<List<TaskInfo>> getPublishedTasks(@PathVariable("collectorId") Integer collectorId) {
         return new ResponseEntity<>(CommonResponseEnum.SUCCESS, taskService.selectPublishedTasks(collectorId));
     }
 
     @GetMapping("/tasks")
     public ResponseEntity<List<TaskInfo>> getTasks() {
         return new ResponseEntity<>(CommonResponseEnum.SUCCESS, taskService.selectTasks());
+    }
+
+    @GetMapping("/task/presenters/{taskId}")
+    public ResponseEntity<List<TaskInfo>> getSpecifyPresenters(@PathVariable("taskId") Integer taskId) {
+        return new ResponseEntity<>(CommonResponseEnum.SUCCESS, taskService.selectSpecifyPresenters(taskId));
     }
 }

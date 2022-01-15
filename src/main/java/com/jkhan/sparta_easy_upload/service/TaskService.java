@@ -12,4 +12,5 @@ public interface TaskService {
     TaskInfo selectTaskById(Integer taskId) throws BusinessException;
     List<TaskInfo> selectPublishedTasks(Integer collectorId);
     List<TaskInfo> selectTasks();
+    List<TaskInfo> selectSpecifyPresenters(Integer taskId);
 }

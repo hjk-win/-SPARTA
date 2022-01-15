@@ -1,6 +1,29 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
 <mapper namespace="com.jkhan.sparta_easy_upload.dao.TaskDao">
+    <resultMap id="taskMap" type="TaskInfo">
+        <id property="taskId" column="task_id"/>
+        <result property="taskName" column="task_name"/>
+        <result property="taskDescribe" column="task_describe"/>
+        <result property="taskStatus" column="taskStatus"/>
+        <result property="startTime" column="startTime"/>
+        <result property="endTime" column="endTime"/>
+        <result property="collector_id" column="collectorId"/>
+    </resultMap>
+    
+    <resultMap id="presenterMap" type="TaskInfo" extends="taskMap">
+        <collection property="presenterTaskDetails" ofType="PresenterTaskDetail">
+            <result property="finishStatus" column="finish_status"/>
+            <collection property="presenters" ofType="PresenterInfo">
+                <id property="presenterId" column="presenter_id"/>
+                <result property="presenterName" column="presenter_name"/>
+                <result property="presenterTelNumber" column="presenter_tel_number"/>
+                <result property="presenterEmail" column="presenter_email"/>
+                <result property="presenterWechat" column="presenter_wechat"/>
+                <result property="collectorId" column="collector_id"/>
+            </collection>
+        </collection>
+    </resultMap>
 
     <insert id="insertPresenter" useGeneratedKeys="true" keyProperty="taskId" parameterType="TaskInfo">
         insert into task_info
@@ -35,5 +58,11 @@
 
     <select id="selectTasks" resultType="TaskInfo">
         select * from task_info
+    </select>
+    
+    <select id="selectSpecifyPresenters" resultMap="presenterMap">
+        select a.*, b.finish_status, c.presenter_name
+        from task_info a, presenter_task_detail b, presenter_info c
+        where a.task_id = b.task_id and b.presenter_id = c.presenter_id and a.task_id = #{taskId}
     </select>
 </mapper>

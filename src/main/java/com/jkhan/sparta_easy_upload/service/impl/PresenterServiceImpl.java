@@ -88,6 +88,12 @@ public class PresenterServiceImpl implements PresenterService {
         return presenterDao.selectPresenters();
     }
 
+    @Override
+    public List<PresenterInfo> selectMyTasks(Integer presenterId) {
+        log.info(CommonConstant.SELECT_FORM_DB, "presenter" + presenterId + ":tasks");
+        return presenterDao.selectMyTasks(presenterId);
+    }
+
     private boolean isExist(Integer id) {
         List<PresenterInfo> presenters = selectPresenters();
         for (PresenterInfo presenter : presenters) {

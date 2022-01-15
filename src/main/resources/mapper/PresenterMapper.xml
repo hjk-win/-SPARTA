@@ -1,22 +1,47 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
 <mapper namespace="com.jkhan.sparta_easy_upload.dao.PresenterDao">
+    <resultMap id="presenterMap" type="PresenterInfo">
+        <id property="presenterId" column="presenter_id"/>
+        <result property="presenterName" column="presenter_name"/>
+        <result property="presenterTelNumber" column="presenter_tel_number"/>
+        <result property="presenterEmail" column="presenter_email"/>
+        <result property="presenterWechat" column="presenter_wechat"/>
+        <result property="collectorId" column="collector_id"/>
+        <result property="labelId" column="label_id"/>
+    </resultMap>
+    
+    <resultMap id="taskMap" type="PresenterInfo" extends="presenterMap">
+        <collection property="presenterTaskDetails" ofType="PresenterTaskDetail">
+            <result property="finishStatus" column="finish_status"/>
+            <collection property="tasks" ofType="TaskInfo">
+                <id property="taskId" column="task_id"/>
+                <result property="taskName" column="task_name"/>
+                <result property="taskDescribe" column="task_describe"/>
+                <result property="taskStatus" column="taskStatus"/>
+                <result property="startTime" column="startTime"/>
+                <result property="endTime" column="endTime"/>
+                <result property="collector_id" column="collectorId"/>
+            </collection>
+        </collection>
+    </resultMap>
 
     <insert id="insertPresenter" useGeneratedKeys="true" keyProperty="presenterId" parameterType="PresenterInfo">
         insert into presenter_info
-        (presenter_name, presenter_tel_number, presenter_email, presenter_wechat, collector_id)
+        (presenter_name, presenter_tel_number, presenter_email, presenter_wechat, collector_id, label_id)
         values
-        (#{presenterName}, #{presenterTelNumber}, #{presenterEmail}, #{presenterWechat}, #{collectorId})
+        (#{presenterName}, #{presenterTelNumber}, #{presenterEmail}, #{presenterWechat}, #{collectorId}, #{labelId})
     </insert>
 
     <insert id="insertPresenterList" useGeneratedKeys="true" keyProperty="presenterId" parameterType="java.util.List">
-        insert into presenter_info (presenter_name, presenter_tel_number, presenter_email, presenter_wechat, collector_id) values
+        insert into presenter_info (presenter_name, presenter_tel_number, presenter_email, presenter_wechat, collector_id, label_id) values
         <foreach collection="list" item="presenter" separator=",">
             (#{presenter.presenterName, jdbcType=VARCHAR},
             #{presenter.presenterTelNumber, jdbcType=VARCHAR},
             #{presenter.presenterEmail, jdbcType=VARCHAR},
             #{presenter.presenterWechat, jdbcType=VARCHAR},
-            #{presenter.collectorId, jdbcType=int})
+            #{presenter.collectorId, jdbcType=int},
+            #{presenter.labelId, jdbcType=int})
         </foreach>
     </insert>
 
@@ -30,7 +55,8 @@
         presenter_tel_number = #{presenterTelNumber},
         presenter_email = #{presenterEmail},
         presenter_wechat = #{presenterWechat},
-        collector_id = #{collectorId}
+        collector_id = #{collectorId},
+        label_id = #{labelId}
         where
         presenter_id = #{presenterId}
     </update>
@@ -41,5 +67,11 @@
 
     <select id="selectPresenters" resultType="PresenterInfo">
         select * from presenter_info
+    </select>
+
+    <select id="selectMyTasks" resultMap="taskMap">
+        select a.*, b.finish_status, c.task_name, c.task_status, c.start_time, c.end_time
+        from presenter_info a, presenter_task_detail b, task_info c
+        where a.presenter_id = b.presenter_id and b.task_id = c.task_id and a.presenter_id = #{presenterId}
     </select>
 </mapper>

@@ -51,4 +51,9 @@ public class PresenterController {
     public ResponseEntity<List<PresenterInfo>> getPresenters() {
         return new ResponseEntity<>(CommonResponseEnum.SUCCESS, presenterService.selectPresenters());
     }
+
+    @GetMapping("/presenter/tasks/{presenterId}")
+    public ResponseEntity<List<PresenterInfo>> getMyTasks(@PathVariable("presenterId") Integer presenterId) {
+        return new ResponseEntity<>(CommonResponseEnum.SUCCESS, presenterService.selectMyTasks(presenterId));
+    }
 }

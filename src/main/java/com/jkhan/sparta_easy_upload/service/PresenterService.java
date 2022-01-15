@@ -12,4 +12,5 @@ public interface PresenterService {
     int updatePresenterInfo(PresenterInfo presenterInfo) throws BusinessException;
     PresenterInfo selectPresenterById(Integer presenterId) throws BusinessException;
     List<PresenterInfo> selectPresenters();
+    List<PresenterInfo> selectMyTasks(Integer presenterId);
 }

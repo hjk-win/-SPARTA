@@ -1,6 +1,7 @@
 package com.jkhan.sparta_easy_upload.dao;
 
 import com.jkhan.sparta_easy_upload.bean.PresenterInfo;
+import com.jkhan.sparta_easy_upload.bean.TaskInfo;
 import org.springframework.stereotype.Component;
 
 import java.util.List;
@@ -13,4 +14,5 @@ public interface PresenterDao {
     int updatePresenterInfo(PresenterInfo presenterInfo);
     PresenterInfo selectPresenterById(Integer presenterId);
     List<PresenterInfo> selectPresenters();
+    List<PresenterInfo> selectMyTasks(Integer presenterId);
 }

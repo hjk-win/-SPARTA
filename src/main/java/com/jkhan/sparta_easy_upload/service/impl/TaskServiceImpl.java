@@ -85,6 +85,12 @@ public class TaskServiceImpl implements TaskService {
         return taskDao.selectTasks();
     }
 
+    @Override
+    public List<TaskInfo> selectSpecifyPresenters(Integer taskId) {
+        log.info(CommonConstant.SELECT_FORM_DB, "the presenters under the task" + taskId);
+        return taskDao.selectSpecifyPresenters(taskId);
+    }
+
     private boolean isExist(Integer id) {
         List<TaskInfo> tasks = selectTasks();
         for (TaskInfo task : tasks) {

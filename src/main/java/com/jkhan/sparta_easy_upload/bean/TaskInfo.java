@@ -1,6 +1,9 @@
 package com.jkhan.sparta_easy_upload.bean;
 
 import lombok.Data;
+import lombok.NoArgsConstructor;
+
+import java.util.List;
 
 /**
  * @ClassName TaskInfo
@@ -9,6 +12,7 @@ import lombok.Data;
  * @Date 2022/1/10 21:01
  **/
 @Data
+@NoArgsConstructor
 public class TaskInfo {
     private Integer taskId;
     private String taskName;
@@ -17,4 +21,5 @@ public class TaskInfo {
     private String startTime;
     private String endTime;
     private Integer collectorId;
+    private List<PresenterTaskDetail> presenterTaskDetails;
 }
