@@ -3,7 +3,6 @@ package com.jkhan.sparta_easy_upload.bean;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
-import java.util.List;
 
 /**
  * @ClassName PresenterTaskDetail
@@ -14,11 +13,9 @@ import java.util.List;
 @Data
 @NoArgsConstructor
 public class PresenterTaskDetail {
-    private int id;
-    private int presenterId;
-    private int taskId;
+    private Integer id;
+    private Integer presenterId;
+    private Integer taskId;
     private String finishStatus;
-    private int fileId;
-    private List<PresenterInfo> presenters;
-    private List<TaskInfo> tasks;
+    private Integer fileId;
 }

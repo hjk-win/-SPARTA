@@ -13,7 +13,7 @@ import java.util.List;
  **/
 @Data
 @NoArgsConstructor
-public class PresenterInfo {
+public class PresenterInfo extends PresenterTaskDetail {
     private Integer presenterId;
     private String presenterName;
     private String presenterTelNumber;
@@ -21,5 +21,5 @@ public class PresenterInfo {
     private String presenterWechat;
     private Integer collectorId;
     private Integer labelId;
-    private List<PresenterTaskDetail> presenterTaskDetails;
+    private List<TaskInfo> tasks;
 }

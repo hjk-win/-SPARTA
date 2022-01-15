@@ -5,23 +5,17 @@
         <id property="taskId" column="task_id"/>
         <result property="taskName" column="task_name"/>
         <result property="taskDescribe" column="task_describe"/>
-        <result property="taskStatus" column="taskStatus"/>
-        <result property="startTime" column="startTime"/>
-        <result property="endTime" column="endTime"/>
-        <result property="collector_id" column="collectorId"/>
+        <result property="taskStatus" column="task_status"/>
+        <result property="startTime" column="start_time"/>
+        <result property="endTime" column="end_time"/>
+        <result property="collectorId" column="collector_id"/>
     </resultMap>
     
     <resultMap id="presenterMap" type="TaskInfo" extends="taskMap">
-        <collection property="presenterTaskDetails" ofType="PresenterTaskDetail">
+        <collection property="presenters" ofType="PresenterInfo">
+            <id property="presenterId" column="presenter_id"/>
+            <result property="presenterName" column="presenter_name"/>
             <result property="finishStatus" column="finish_status"/>
-            <collection property="presenters" ofType="PresenterInfo">
-                <id property="presenterId" column="presenter_id"/>
-                <result property="presenterName" column="presenter_name"/>
-                <result property="presenterTelNumber" column="presenter_tel_number"/>
-                <result property="presenterEmail" column="presenter_email"/>
-                <result property="presenterWechat" column="presenter_wechat"/>
-                <result property="collectorId" column="collector_id"/>
-            </collection>
         </collection>
     </resultMap>
 
