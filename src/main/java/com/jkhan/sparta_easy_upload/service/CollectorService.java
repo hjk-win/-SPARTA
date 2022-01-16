@@ -12,4 +12,6 @@ public interface CollectorService {
     int updateCollectorInfo(CollectorInfo collectorInfo) throws BusinessException;
     CollectorInfo selectCollectorById(Integer collectorId) throws BusinessException;
     List<CollectorInfo> selectCollectors();
+    CollectorInfo selectMyPresenters(Integer collectorId);
+    CollectorInfo selectPublishedTasks(Integer collectorId);
 }

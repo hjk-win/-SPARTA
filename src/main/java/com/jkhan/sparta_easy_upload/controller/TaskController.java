@@ -42,11 +42,6 @@ public class TaskController {
         return new ResponseEntity<>(CommonResponseEnum.SUCCESS, taskService.selectTaskById(taskId));
     }
 
-    @GetMapping("/published-tasks/{collectorId}")
-    public ResponseEntity<List<TaskInfo>> getPublishedTasks(@PathVariable("collectorId") Integer collectorId) {
-        return new ResponseEntity<>(CommonResponseEnum.SUCCESS, taskService.selectPublishedTasks(collectorId));
-    }
-
     @GetMapping("/tasks")
     public ResponseEntity<List<TaskInfo>> getTasks() {
         return new ResponseEntity<>(CommonResponseEnum.SUCCESS, taskService.selectTasks());

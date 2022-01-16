@@ -11,7 +11,6 @@ public interface TaskDao {
     int deleteTaskById(Integer taskId);
     int updateTaskInfo(TaskInfo taskInfo);
     TaskInfo selectTaskById(Integer taskId);
-    List<TaskInfo> selectPublishedTasks(Integer collectorId);
     List<TaskInfo> selectTasks();
     List<TaskInfo> selectSpecifyPresenters(Integer taskId);
 }

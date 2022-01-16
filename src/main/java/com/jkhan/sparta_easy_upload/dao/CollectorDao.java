@@ -13,4 +13,6 @@ public interface CollectorDao {
     int updateCollectorInfo(CollectorInfo collectorInfo);
     CollectorInfo selectCollectorById(Integer collectorId);
     List<CollectorInfo> selectCollectors();
+    CollectorInfo selectMyPresenters(Integer collectorId);
+    CollectorInfo selectPublishedTasks(Integer collectorId);
 }

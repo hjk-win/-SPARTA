@@ -47,8 +47,18 @@ public class CollectorController {
         return new ResponseEntity<>(CommonResponseEnum.SUCCESS, collectorService.selectCollectorById(collectorId));
     }
 
-    @GetMapping("collectors")
+    @GetMapping("/collectors")
     public ResponseEntity<List<CollectorInfo>> getCollectors() {
         return new ResponseEntity<>(CommonResponseEnum.SUCCESS, collectorService.selectCollectors());
+    }
+
+    @GetMapping("/collector/presenters/{collectorId}")
+    public ResponseEntity<CollectorInfo> getMyPresenters(@PathVariable("collectorId") Integer collectorId) {
+        return new ResponseEntity<>(CommonResponseEnum.SUCCESS, collectorService.selectMyPresenters(collectorId));
+    }
+
+    @GetMapping("/collector/published-tasks/{collectorId}")
+    public ResponseEntity<CollectorInfo> getPublishedTasks(@PathVariable("collectorId") Integer collectorId) {
+        return new ResponseEntity<>(CommonResponseEnum.SUCCESS, collectorService.selectPublishedTasks(collectorId));
     }
 }

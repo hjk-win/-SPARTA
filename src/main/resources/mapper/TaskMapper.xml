@@ -46,10 +46,6 @@
         select * from task_info where task_id = #{taskId}
     </select>
 
-    <select id="selectPublishedTasks" resultType="TaskInfo">
-        select * from task_info where collector_id = #{collectorId}
-    </select>
-
     <select id="selectTasks" resultType="TaskInfo">
         select * from task_info
     </select>

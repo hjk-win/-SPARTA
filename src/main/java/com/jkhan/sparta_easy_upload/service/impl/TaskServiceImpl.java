@@ -74,12 +74,6 @@ public class TaskServiceImpl implements TaskService {
     }
 
     @Override
-    public List<TaskInfo> selectPublishedTasks(Integer collectorId) {
-        log.info(CommonConstant.SELECT_FORM_DB, "collector" + collectorId + " published tasks");
-        return taskDao.selectPublishedTasks(collectorId);
-    }
-
-    @Override
     public List<TaskInfo> selectTasks() {
         log.info(CommonConstant.SELECT_FORM_DB, "tasks");
         return taskDao.selectTasks();

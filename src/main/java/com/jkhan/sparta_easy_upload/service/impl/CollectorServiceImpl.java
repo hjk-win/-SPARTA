@@ -88,6 +88,18 @@ public class CollectorServiceImpl implements CollectorService {
         return collectorDao.selectCollectors();
     }
 
+    @Override
+    public CollectorInfo selectMyPresenters(Integer collectorId) {
+        log.info(CommonConstant.SELECT_FORM_DB, "presenters from collector" + collectorId);
+        return collectorDao.selectMyPresenters(collectorId);
+    }
+
+    @Override
+    public CollectorInfo selectPublishedTasks(Integer collectorId) {
+        log.info(CommonConstant.SELECT_FORM_DB, "published tasks from collector" + collectorId);
+        return collectorDao.selectPublishedTasks(collectorId);
+    }
+
     private boolean isExist(Integer id) {
         List<CollectorInfo> collectors = selectCollectors();
         for (CollectorInfo collector : collectors) {

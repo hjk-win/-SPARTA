@@ -10,7 +10,6 @@ public interface TaskService {
     int deleteTaskById(Integer taskId) throws BusinessException;
     int updateTaskInfo(TaskInfo taskInfo) throws BusinessException;
     TaskInfo selectTaskById(Integer taskId) throws BusinessException;
-    List<TaskInfo> selectPublishedTasks(Integer collectorId);
     List<TaskInfo> selectTasks();
     List<TaskInfo> selectSpecifyPresenters(Integer taskId);
 }

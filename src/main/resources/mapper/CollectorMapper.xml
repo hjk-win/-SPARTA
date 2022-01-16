@@ -6,21 +6,29 @@
         <result property="collectorName" column="collector_name"/>
         <result property="collectorTelNumber" column="collector_tel_number"/>
         <result property="collectorEmail" column="collector_email"/>
+    </resultMap>
+
+    <resultMap id="presenterMap" type="CollectorInfo" extends="collectorMap">
         <collection property="presenters" ofType="PresenterInfo">
             <id property="presenterId" column="presenter_id"/>
             <result property="presenterName" column="presenter_name"/>
             <result property="presenterTelNumber" column="presenter_tel_number"/>
             <result property="presenterEmail" column="presenter_email"/>
             <result property="presenterWechat" column="presenter_wechat"/>
+            <result property="collectorId" column="collector_id"/>
+            <result property="labelId" column="labelId"/>
         </collection>
+    </resultMap>
+
+    <resultMap id="taskMap" type="CollectorInfo" extends="collectorMap">
         <collection property="tasks" ofType="TaskInfo">
             <id property="taskId" column="task_id"/>
             <result property="taskName" column="task_name"/>
             <result property="taskDescribe" column="task_describe"/>
-            <result property="taskStatus" column="taskStatus"/>
-            <result property="startTime" column="startTime"/>
-            <result property="endTime" column="endTime"/>
-            <result property="collector_id" column="collectorId"/>
+            <result property="taskStatus" column="task_status"/>
+            <result property="startTime" column="start_time"/>
+            <result property="endTime" column="end_time"/>
+            <result property="collectorId" column="collector_id"/>
         </collection>
     </resultMap>
 
@@ -54,5 +62,17 @@
 
     <select id="selectCollectors" resultType="CollectorInfo">
         select * from collector_info
+    </select>
+
+    <select id="selectMyPresenters" resultMap="presenterMap">
+        select a.*, b.presenter_name, b.label_id
+        from collector_info a, presenter_info b
+        where a.collector_id = b.collector_id and a.collector_id = #{collectorId}
+    </select>
+
+    <select id="selectPublishedTasks" resultMap="taskMap">
+        select a.*, b.*
+        from collector_info a, task_info b
+        where a.collector_id = b.collector_id and a.collector_id = #{collectorId}
     </select>
 </mapper>
