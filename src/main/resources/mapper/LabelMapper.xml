@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.jkhan.sparta_easy_upload.dao.LabelDao">
+    <resultMap id="labelMap" type="LabelInfo">
+        <id property="labelId" column="label_id"/>
+        <result property="labelName" column="label_name"/>
+        <result property="labelDescribe" column="label_describe"/>
+        <result property="collectorId" column="collectorId"/>
+        <collection property="presenters" ofType="PresenterInfo">
+            <id property="presenterId" column="presenter_id"/>
+            <result property="presenterName" column="presenter_name"/>
+            <result property="presenterTelNumber" column="presenter_tel_number"/>
+            <result property="presenterEmail" column="presenter_email"/>
+            <result property="presenterWechat" column="presenter_wechat"/>
+        </collection>
+    </resultMap>
+
+    <insert id="insertLabel" useGeneratedKeys="true" keyProperty="labelId" parameterType="LabelInfo">
+        insert into label_info (label_name, label_describe) values (#{labelName}, #{labelDescribe})
+    </insert>
+
+    <delete id="deleteLabelById" parameterType="LabelInfo">
+        delete from label_info where label_id = #{labelId}
+    </delete>
+
+    <update id="updateLabelInfo" parameterType="LabelInfo">
+        update label_info set label_name = #{labelName}, label_describe = #{labelDescribe} where label_id = #{labelId}
+    </update>
+
+    <select id="selectLabelPresenters" resultMap="labelMap">
+        select a.*, b.* from label_info a, presenter_info b where a.label_id = b.label_id and a.label_id = #{labelId}
+    </select>
+</mapper>
