@@ -32,3 +32,6 @@ swagger:
 logging:
   level:
     com.jkhan.sparta_easy_upload.dao: debug
+
+file:
+  dir: F:\sparta_task_file\
