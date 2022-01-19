@@ -21,7 +21,7 @@ public class AdminController {
     @Autowired
     private AdminService adminService;
 
-    @GetMapping("/admin")
+    @GetMapping("/admins")
     public ResponseEntity<String> checkIdentity(String adminTelNumber, String password) throws BusinessException {
         adminService.checkIdentity(adminTelNumber, password);
         return new ResponseEntity<>(CommonResponseEnum.SUCCESS, adminTelNumber);

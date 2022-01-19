@@ -32,17 +32,17 @@ public class PresenterController {
         return new ResponseEntity<>(CommonResponseEnum.SUCCESS, presenterService.insertPresenterList(presenterInfoList));
     }
 
-    @DeleteMapping("/presenter/{presenterId}")
+    @DeleteMapping("/presenters/{presenterId}")
     public ResponseEntity<Integer> deletePresenter(@PathVariable("presenterId") Integer presenterId) throws BusinessException {
         return new ResponseEntity<>(CommonResponseEnum.SUCCESS, presenterService.deletePresenterById(presenterId));
     }
 
-    @PutMapping("/presenter")
+    @PutMapping("/presenters/{presenterId}")
     public ResponseEntity<Integer> updatePresenterInfo(PresenterInfo presenterInfo) throws BusinessException {
         return new ResponseEntity<>(CommonResponseEnum.SUCCESS, presenterService.updatePresenterInfo(presenterInfo));
     }
 
-    @GetMapping("/presenter/{presenterId}")
+    @GetMapping("/presenters/{presenterId}")
     public ResponseEntity<PresenterInfo> getPresenter(@PathVariable("presenterId") Integer presenterId) throws BusinessException {
         return new ResponseEntity<>(CommonResponseEnum.SUCCESS, presenterService.selectPresenterById(presenterId));
     }
@@ -52,7 +52,7 @@ public class PresenterController {
         return new ResponseEntity<>(CommonResponseEnum.SUCCESS, presenterService.selectPresenters());
     }
 
-    @GetMapping("/presenter/tasks/{presenterId}")
+    @GetMapping("/presenters/{presenterId}/tasks")
     public ResponseEntity<List<PresenterInfo>> getMyTasks(@PathVariable("presenterId") Integer presenterId) {
         return new ResponseEntity<>(CommonResponseEnum.SUCCESS, presenterService.selectMyTasks(presenterId));
     }

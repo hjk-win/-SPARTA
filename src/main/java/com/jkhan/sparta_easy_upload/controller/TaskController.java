@@ -22,22 +22,22 @@ public class TaskController {
     @Autowired
     private TaskService taskService;
 
-    @PostMapping("/task")
+    @PostMapping("/tasks")
     public ResponseEntity<Integer> addTask(TaskInfo task) throws BusinessException {
         return new ResponseEntity<>(CommonResponseEnum.SUCCESS, taskService.insertTask(task));
     }
 
-    @DeleteMapping("/task/{taskId}")
+    @DeleteMapping("/tasks/{taskId}")
     public ResponseEntity<Integer> deleteTask(@PathVariable("taskId") Integer taskId) throws BusinessException {
         return new ResponseEntity<>(CommonResponseEnum.SUCCESS, taskService.deleteTaskById(taskId));
     }
 
-    @PutMapping("/task")
+    @PutMapping("/tasks/{taskId}")
     public ResponseEntity<Integer> updateTaskInfo(TaskInfo taskInfo) throws BusinessException {
         return new ResponseEntity<>(CommonResponseEnum.SUCCESS, taskService.updateTaskInfo(taskInfo));
     }
 
-    @GetMapping("/task/{taskId}")
+    @GetMapping("/tasks/{taskId}")
     public ResponseEntity<TaskInfo> getTask(@PathVariable("taskId") Integer taskId) throws BusinessException {
         return new ResponseEntity<>(CommonResponseEnum.SUCCESS, taskService.selectTaskById(taskId));
     }
@@ -47,7 +47,7 @@ public class TaskController {
         return new ResponseEntity<>(CommonResponseEnum.SUCCESS, taskService.selectTasks());
     }
 
-    @GetMapping("/task/presenters/{taskId}")
+    @GetMapping("/tasks/{taskId}/presenters")
     public ResponseEntity<List<TaskInfo>> getSpecifyPresenters(@PathVariable("taskId") Integer taskId) {
         return new ResponseEntity<>(CommonResponseEnum.SUCCESS, taskService.selectSpecifyPresenters(taskId));
     }

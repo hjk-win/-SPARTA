@@ -20,22 +20,22 @@ public class LabelController {
     @Autowired
     private LabelService labelService;
 
-    @PostMapping("/label")
+    @PostMapping("/labels")
     public ResponseEntity<Integer> addLabel(LabelInfo label) throws BusinessException {
         return new ResponseEntity<>(CommonResponseEnum.SUCCESS, labelService.insertLabel(label));
     }
 
-    @DeleteMapping("/label/{labelId}")
+    @DeleteMapping("/labels/{labelId}")
     public ResponseEntity<Integer> deleteLabel(@PathVariable("labelId") Integer labelId) throws BusinessException {
         return new ResponseEntity<>(CommonResponseEnum.SUCCESS, labelService.deleteLabelById(labelId));
     }
 
-    @PutMapping("/label")
+    @PutMapping("/labels/{labelId}")
     public ResponseEntity<Integer> updateLabelInfo(LabelInfo labelInfo) throws BusinessException {
         return new ResponseEntity<>(CommonResponseEnum.SUCCESS, labelService.updateLabelInfo(labelInfo));
     }
 
-    @GetMapping("/label/presenters/{labelId}")
+    @GetMapping("/labels//{labelId}/presenters")
     public ResponseEntity<LabelInfo> getLabelPresenters(@PathVariable("labelId") Integer labelId) throws BusinessException {
         return new ResponseEntity<>(CommonResponseEnum.SUCCESS, labelService.selectLabelPresenters(labelId));
     }

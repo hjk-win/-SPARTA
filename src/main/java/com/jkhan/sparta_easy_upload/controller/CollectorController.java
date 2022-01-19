@@ -32,17 +32,17 @@ public class CollectorController {
         return new ResponseEntity<>(CommonResponseEnum.SUCCESS, collectorService.insertCollectorList(collectorInfoList));
     }
 
-    @DeleteMapping("/collector/{collectorId}")
+    @DeleteMapping("/collectors/{collectorId}")
     public ResponseEntity<Integer> deleteCollector(@PathVariable("collectorId") Integer collectorId) throws BusinessException {
         return new ResponseEntity<>(CommonResponseEnum.SUCCESS, collectorService.deleteCollectorById(collectorId));
     }
 
-    @PutMapping("/collector")
+    @PutMapping("/collectors/{collectorId}")
     public ResponseEntity<Integer> updateCollectorInfo(CollectorInfo collectorInfo) throws BusinessException {
         return new ResponseEntity<>(CommonResponseEnum.SUCCESS, collectorService.updateCollectorInfo(collectorInfo));
     }
 
-    @GetMapping("/collector/{collectorId}")
+    @GetMapping("/collectors/{collectorId}")
     public ResponseEntity<CollectorInfo> getCollector(@PathVariable("collectorId") Integer collectorId) throws BusinessException {
         return new ResponseEntity<>(CommonResponseEnum.SUCCESS, collectorService.selectCollectorById(collectorId));
     }
@@ -52,12 +52,12 @@ public class CollectorController {
         return new ResponseEntity<>(CommonResponseEnum.SUCCESS, collectorService.selectCollectors());
     }
 
-    @GetMapping("/collector/presenters/{collectorId}")
+    @GetMapping("/collectors/{collectorId}/presenters")
     public ResponseEntity<CollectorInfo> getMyPresenters(@PathVariable("collectorId") Integer collectorId) {
         return new ResponseEntity<>(CommonResponseEnum.SUCCESS, collectorService.selectMyPresenters(collectorId));
     }
 
-    @GetMapping("/collector/published-tasks/{collectorId}")
+    @GetMapping("/collectors/{collectorId}/published-tasks")
     public ResponseEntity<CollectorInfo> getPublishedTasks(@PathVariable("collectorId") Integer collectorId) {
         return new ResponseEntity<>(CommonResponseEnum.SUCCESS, collectorService.selectPublishedTasks(collectorId));
     }
