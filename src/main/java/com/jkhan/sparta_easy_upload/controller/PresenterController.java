@@ -37,7 +37,7 @@ public class PresenterController {
         return new ResponseEntity<>(CommonResponseEnum.SUCCESS, presenterService.deletePresenterById(presenterId));
     }
 
-    @PutMapping("/presenters/{presenterId}")
+    @PutMapping("/presenters")
     public ResponseEntity<Integer> updatePresenterInfo(PresenterInfo presenterInfo) throws BusinessException {
         return new ResponseEntity<>(CommonResponseEnum.SUCCESS, presenterService.updatePresenterInfo(presenterInfo));
     }

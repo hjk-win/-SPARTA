@@ -32,7 +32,7 @@ public class TaskController {
         return new ResponseEntity<>(CommonResponseEnum.SUCCESS, taskService.deleteTaskById(taskId));
     }
 
-    @PutMapping("/tasks/{taskId}")
+    @PutMapping("/tasks")
     public ResponseEntity<Integer> updateTaskInfo(TaskInfo taskInfo) throws BusinessException {
         return new ResponseEntity<>(CommonResponseEnum.SUCCESS, taskService.updateTaskInfo(taskInfo));
     }
