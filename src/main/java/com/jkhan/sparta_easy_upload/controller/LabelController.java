@@ -30,8 +30,8 @@ public class LabelController {
         return new ResponseEntity<>(CommonResponseEnum.SUCCESS, labelService.deleteLabelById(labelId));
     }
 
-    @PutMapping("/labels")
-    public ResponseEntity<Integer> updateLabelInfo(LabelInfo labelInfo) throws BusinessException {
+    @PutMapping("/labels/{labelId}")
+    public ResponseEntity<Integer> updateLabelInfo(@PathVariable("labelId") Integer labelId, LabelInfo labelInfo) throws BusinessException {
         return new ResponseEntity<>(CommonResponseEnum.SUCCESS, labelService.updateLabelInfo(labelInfo));
     }
 

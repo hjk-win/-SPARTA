@@ -37,8 +37,8 @@ public class CollectorController {
         return new ResponseEntity<>(CommonResponseEnum.SUCCESS, collectorService.deleteCollectorById(collectorId));
     }
 
-    @PutMapping("/collectors")
-    public ResponseEntity<Integer> updateCollectorInfo(CollectorInfo collectorInfo) throws BusinessException {
+    @PutMapping("/collectors/{collectorId}")
+    public ResponseEntity<Integer> updateCollectorInfo(@PathVariable("collectorId") Integer collectorId, CollectorInfo collectorInfo) throws BusinessException {
         return new ResponseEntity<>(CommonResponseEnum.SUCCESS, collectorService.updateCollectorInfo(collectorInfo));
     }
 
