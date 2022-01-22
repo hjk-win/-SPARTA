@@ -11,8 +11,8 @@ public enum ResponseEnum {
     NOT_FOUND(404, "not found"),
     FAILURE(500, "failure");
 
-    private int code;
-    private String message;
+    private final int code;
+    private final String message;
 
 
 }
