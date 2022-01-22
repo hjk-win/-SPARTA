@@ -2,7 +2,7 @@ package com.jkhan.sparta_easy_upload.controller;
 
 import com.jkhan.sparta_easy_upload.bean.PresenterInfo;
 import com.jkhan.sparta_easy_upload.bean.ResponseEntity;
-import com.jkhan.sparta_easy_upload.enumeration.CommonResponseEnum;
+import com.jkhan.sparta_easy_upload.enumeration.ResponseEnum;
 import com.jkhan.sparta_easy_upload.exception.BusinessException;
 import com.jkhan.sparta_easy_upload.service.PresenterService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -24,36 +24,36 @@ public class PresenterController {
 
     @PostMapping("/presenter")
     public ResponseEntity<Integer> addPresenter(PresenterInfo presenter) throws BusinessException {
-        return new ResponseEntity<>(CommonResponseEnum.SUCCESS, presenterService.insertPresenter(presenter));
+        return new ResponseEntity<>(ResponseEnum.SUCCESS, presenterService.insertPresenter(presenter));
     }
 
     @PostMapping("/presenters")
     public ResponseEntity<Integer> addPresenters(List<PresenterInfo> presenterInfoList) throws BusinessException {
-        return new ResponseEntity<>(CommonResponseEnum.SUCCESS, presenterService.insertPresenterList(presenterInfoList));
+        return new ResponseEntity<>(ResponseEnum.SUCCESS, presenterService.insertPresenterList(presenterInfoList));
     }
 
     @DeleteMapping("/presenters/{presenterId}")
     public ResponseEntity<Integer> deletePresenter(@PathVariable("presenterId") Integer presenterId) throws BusinessException {
-        return new ResponseEntity<>(CommonResponseEnum.SUCCESS, presenterService.deletePresenterById(presenterId));
+        return new ResponseEntity<>(ResponseEnum.SUCCESS, presenterService.deletePresenterById(presenterId));
     }
 
     @PutMapping("/presenters/{presenterId}")
     public ResponseEntity<Integer> updatePresenterInfo(@PathVariable("presenterId") Integer presenterId, PresenterInfo presenterInfo) throws BusinessException {
-        return new ResponseEntity<>(CommonResponseEnum.SUCCESS, presenterService.updatePresenterInfo(presenterInfo));
+        return new ResponseEntity<>(ResponseEnum.SUCCESS, presenterService.updatePresenterInfo(presenterInfo));
     }
 
     @GetMapping("/presenters/{presenterId}")
     public ResponseEntity<PresenterInfo> getPresenter(@PathVariable("presenterId") Integer presenterId) throws BusinessException {
-        return new ResponseEntity<>(CommonResponseEnum.SUCCESS, presenterService.selectPresenterById(presenterId));
+        return new ResponseEntity<>(ResponseEnum.SUCCESS, presenterService.selectPresenterById(presenterId));
     }
 
     @GetMapping("/presenters")
     public ResponseEntity<List<PresenterInfo>> getPresenters() {
-        return new ResponseEntity<>(CommonResponseEnum.SUCCESS, presenterService.selectPresenters());
+        return new ResponseEntity<>(ResponseEnum.SUCCESS, presenterService.selectPresenters());
     }
 
     @GetMapping("/presenters/{presenterId}/tasks")
     public ResponseEntity<List<PresenterInfo>> getMyTasks(@PathVariable("presenterId") Integer presenterId) {
-        return new ResponseEntity<>(CommonResponseEnum.SUCCESS, presenterService.selectMyTasks(presenterId));
+        return new ResponseEntity<>(ResponseEnum.SUCCESS, presenterService.selectMyTasks(presenterId));
     }
 }

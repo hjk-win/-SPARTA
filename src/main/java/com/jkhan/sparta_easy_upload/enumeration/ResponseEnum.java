@@ -5,7 +5,7 @@ import lombok.Getter;
 
 @Getter
 @AllArgsConstructor
-public enum CommonResponseEnum {
+public enum ResponseEnum {
     SUCCESS(200, "success"),
     FORBIDDEN(403, "no authority"),
     NOT_FOUND(404, "not found"),

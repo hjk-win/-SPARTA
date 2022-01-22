@@ -2,7 +2,7 @@ package com.jkhan.sparta_easy_upload.controller;
 
 import com.jkhan.sparta_easy_upload.bean.LabelInfo;
 import com.jkhan.sparta_easy_upload.bean.ResponseEntity;
-import com.jkhan.sparta_easy_upload.enumeration.CommonResponseEnum;
+import com.jkhan.sparta_easy_upload.enumeration.ResponseEnum;
 import com.jkhan.sparta_easy_upload.exception.BusinessException;
 import com.jkhan.sparta_easy_upload.service.LabelService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -22,21 +22,21 @@ public class LabelController {
 
     @PostMapping("/labels")
     public ResponseEntity<Integer> addLabel(LabelInfo label) throws BusinessException {
-        return new ResponseEntity<>(CommonResponseEnum.SUCCESS, labelService.insertLabel(label));
+        return new ResponseEntity<>(ResponseEnum.SUCCESS, labelService.insertLabel(label));
     }
 
     @DeleteMapping("/labels/{labelId}")
     public ResponseEntity<Integer> deleteLabel(@PathVariable("labelId") Integer labelId) throws BusinessException {
-        return new ResponseEntity<>(CommonResponseEnum.SUCCESS, labelService.deleteLabelById(labelId));
+        return new ResponseEntity<>(ResponseEnum.SUCCESS, labelService.deleteLabelById(labelId));
     }
 
     @PutMapping("/labels/{labelId}")
     public ResponseEntity<Integer> updateLabelInfo(@PathVariable("labelId") Integer labelId, LabelInfo labelInfo) throws BusinessException {
-        return new ResponseEntity<>(CommonResponseEnum.SUCCESS, labelService.updateLabelInfo(labelInfo));
+        return new ResponseEntity<>(ResponseEnum.SUCCESS, labelService.updateLabelInfo(labelInfo));
     }
 
     @GetMapping("/labels//{labelId}/presenters")
     public ResponseEntity<LabelInfo> getLabelPresenters(@PathVariable("labelId") Integer labelId) throws BusinessException {
-        return new ResponseEntity<>(CommonResponseEnum.SUCCESS, labelService.selectLabelPresenters(labelId));
+        return new ResponseEntity<>(ResponseEnum.SUCCESS, labelService.selectLabelPresenters(labelId));
     }
 }

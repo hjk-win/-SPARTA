@@ -1,7 +1,7 @@
 package com.jkhan.sparta_easy_upload.controller;
 
 import com.jkhan.sparta_easy_upload.bean.ResponseEntity;
-import com.jkhan.sparta_easy_upload.enumeration.CommonResponseEnum;
+import com.jkhan.sparta_easy_upload.enumeration.ResponseEnum;
 import com.jkhan.sparta_easy_upload.exception.BusinessException;
 import com.jkhan.sparta_easy_upload.service.AdminService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -24,6 +24,6 @@ public class AdminController {
     @GetMapping("/admins")
     public ResponseEntity<String> checkIdentity(String adminTelNumber, String password) throws BusinessException {
         adminService.checkIdentity(adminTelNumber, password);
-        return new ResponseEntity<>(CommonResponseEnum.SUCCESS, adminTelNumber);
+        return new ResponseEntity<>(ResponseEnum.SUCCESS, adminTelNumber);
     }
 }
